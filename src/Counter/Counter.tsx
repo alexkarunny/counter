@@ -1,4 +1,5 @@
 import React from "react";
+import classes from './Counter.module.css'
 
 export type CounterType = {
     value: number
@@ -8,10 +9,12 @@ export type CounterType = {
 
 export function Counter(props: CounterType) {
     return (
-        <div>
-            <input value={props.value}/>
-            <button onClick={props.incValue} disabled={props.value === 5}>Inc</button>
-            <button onClick={props.resetValue}>Reset</button>
+        <div className={classes.wrapper}>
+            <input value={props.value} className={props.value === 5 ? classes.displayWarning : classes.display}/>
+            <div className={classes.buttonWrapper}>
+                <button onClick={props.incValue} disabled={props.value === 5}>Inc</button>
+                <button onClick={props.resetValue}>Reset</button>
+            </div>
         </div>
     )
 }

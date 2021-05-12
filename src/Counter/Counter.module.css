@@ -1,0 +1,37 @@
+.wrapper {
+    margin: 0 auto;
+    width: 250px;
+    display: grid;
+    grid-template-areas:
+        'i'
+        'b'
+    ;
+    grid-template-columns: 250px;
+    grid-template-rows: 100px 50px;
+}
+
+.display {
+    grid-area: i;
+    text-align: center;
+    font-size: 20px;
+}
+
+.displayWarning {
+    grid-area: i;
+    text-align: center;
+    color: #f00;
+    font-size: 30px;
+}
+
+.buttonWrapper {
+    display: grid;
+    grid-area: b;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+
+
+
+
