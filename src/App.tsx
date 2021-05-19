@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./Counter/Counter";
+import {SetCounter} from "./Counter/SetCounter";
 
 function App() {
 
     let [value, setValue] = useState<number>(0)
+    let [maxValue, setMaxValue] = useState<number>(5)
+
 
     const incValue = () => {
         setValue(++value)
@@ -14,9 +17,12 @@ function App() {
         setValue(0)
     }
 
+
+
     return (
         <div>
-            <Counter value={value} incValue={incValue} resetValue={resetValue} />
+            <SetCounter value={value} maxValue={maxValue} incStartValue={incValue}/>
+            <Counter value={value} maxValue={maxValue} incValue={incValue} resetValue={resetValue} />
         </div>
 
     )
