@@ -6,7 +6,7 @@ import {SetCounter} from "./Counter/SetCounter";
 function App() {
 
     let [value, setValue] = useState<number>(0)
-    let [maxValue, setMaxValue] = useState<number>(9)
+    let [maxValue, setMaxValue] = useState<number>(5)
 
 
     const incValue = () => {
@@ -14,7 +14,7 @@ function App() {
     }
 
     const resetValue = () => {
-        setValue(0)
+        setValue(value)
     }
 
     const setMaxLimit = (value: number) => {
