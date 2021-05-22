@@ -7,28 +7,40 @@ function App() {
 
     let [value, setValue] = useState<number>(0)
     let [maxValue, setMaxValue] = useState<number>(5)
-
+    let [minValue, setMinValue] = useState<number>(0)
 
     const incValue = () => {
         setValue(++value)
     }
 
     const resetValue = () => {
-        setValue(value)
+        setValue(minValue)
     }
 
-    const setMaxLimit = (value: number) => {
+    const setLimits = () => {
+        setValue(minValue)
+    }
+
+    const onChangeSetMinValue = (value: number) => {
+        setMinValue(value)
+    }
+    const onChangeSetMaxValue = (value: number) => {
         setMaxValue(value)
     }
-
-    const setMinLimit = (value: number) => {
-        setValue(value)
-    }
-
     return (
         <div>
-            <SetCounter value={value} maxValue={maxValue} setMinLimit={setMinLimit} setMaxLimit={setMaxLimit}/>
-            <Counter value={value} maxValue={maxValue} incValue={incValue} resetValue={resetValue} />
+            <SetCounter maxValue={maxValue}
+                        minValue={minValue}
+                        setLimits={setLimits}
+                        onChangeSetMinValue={onChangeSetMinValue}
+                        onChangeSetMaxValue={onChangeSetMaxValue}
+            />
+            <Counter value={value}
+                     minValue={minValue}
+                     maxValue={maxValue}
+                     incValue={incValue}
+                     resetValue={resetValue}
+            />
         </div>
 
     )

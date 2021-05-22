@@ -4,18 +4,22 @@ import {Button} from "./Button/Button";
 
 export type CounterType = {
     value: number
+    maxValue: number
+    minValue: number
     incValue: () => void
     resetValue: () => void
-    maxValue: number
+
 }
 
 export function Counter(props: CounterType) {
     return (
         <div className={classes.wrapper}>
-            <input value={props.value} className={props.value === props.maxValue ? classes.displayWarning : classes.display}/>
+            <input value={props.minValue >= 0 ? props.value : 'incorrect value'}
+                   className={props.value === props.maxValue ? classes.displayWarning : classes.display}
+            />
             <div className={classes.buttonWrapper}>
-                <Button title={'Inc'} onClick={props.incValue} value={props.value} disabled={props.value === props.maxValue}/>
-                <Button title={'Reset'} onClick={props.resetValue} value={props.value} />
+                <Button title={'Inc'} onClick={props.incValue} disabled={props.value === props.maxValue}/>
+                <Button title={'Reset'} onClick={props.resetValue} />
             </div>
         </div>
     )
