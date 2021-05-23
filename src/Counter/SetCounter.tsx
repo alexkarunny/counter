@@ -30,7 +30,10 @@ export function SetCounter(props: CounterType) {
                 <input type="number" onChange={onChangeSetMinValue} value={props.minValue}/>
             </div>
             <div className={classes.buttonWrapper}>
-                <Button title={'Set'} onClick={setLimits}/>
+                <Button title={'Set'}
+                        onClick={setLimits}
+                        disabled={props.minValue < 0 || props.minValue >= props.maxValue}
+                />
             </div>
         </div>
     )

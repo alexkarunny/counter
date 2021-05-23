@@ -18,7 +18,14 @@ function App() {
     }
 
     const setLimits = () => {
-        setValue(minValue)
+        localStorage.setItem('minimalValue', JSON.stringify(minValue))
+        localStorage.setItem('maximumValue', JSON.stringify(maxValue))
+        let minimalValue = localStorage.getItem('minimalValue')
+        if (minimalValue) {
+            let newMinimalValue = JSON.parse(minimalValue)
+            setValue(newMinimalValue)
+        }
+
     }
 
     const onChangeSetMinValue = (value: number) => {
