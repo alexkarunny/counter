@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./Counter/Counter";
 import {SetCounter} from "./Counter/SetCounter";
@@ -9,8 +9,36 @@ function App() {
     let [maxValue, setMaxValue] = useState<number>(5)
     let [minValue, setMinValue] = useState<number>(0)
 
+
+
+    useEffect(() => {
+        let storageValueAsString = localStorage.getItem('value')
+        if(storageValueAsString) {
+            let storageValue = JSON.parse(storageValueAsString)
+            setValue(storageValue)
+        }
+        let storageMinimumValueAsString = localStorage.getItem('minimumValue')
+        if (storageMinimumValueAsString) {
+            let storageMinimumValue = JSON.parse(storageMinimumValueAsString)
+            setMinValue(storageMinimumValue)
+        }
+        let storageMaximumValueAsString = localStorage.getItem('maximumValue')
+        if (storageMaximumValueAsString) {
+            let storageMaximumValue = JSON.parse(storageMaximumValueAsString)
+            setMaxValue(storageMaximumValue)
+        }
+
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('value', JSON.stringify(value))
+        localStorage.setItem('minimumValue', JSON.stringify(minValue))
+        localStorage.setItem('maximumValue', JSON.stringify(maxValue))
+    }, [value, minValue, maxValue])
+
     const incValue = () => {
-        setValue(++value)
+        setValue(value + 1)
+
     }
 
     const resetValue = () => {
@@ -18,15 +46,9 @@ function App() {
     }
 
     const setLimits = () => {
-        localStorage.setItem('minimalValue', JSON.stringify(minValue))
-        localStorage.setItem('maximumValue', JSON.stringify(maxValue))
-        let minimalValue = localStorage.getItem('minimalValue')
-        if (minimalValue) {
-            let newMinimalValue = JSON.parse(minimalValue)
-            setValue(newMinimalValue)
-        }
-
+        setValue(minValue)
     }
+
 
     const onChangeSetMinValue = (value: number) => {
         setMinValue(value)
